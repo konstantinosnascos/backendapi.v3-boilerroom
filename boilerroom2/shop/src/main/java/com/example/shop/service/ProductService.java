@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 import com.example.shop.entity.Product;
 import com.example.shop.repository.ProductRepository;
 
+import java.util.List;
+
 @Service
 public class ProductService {
 
@@ -29,5 +31,9 @@ public class ProductService {
 
         return repo.findById(id)
                 .orElseThrow(() -> new RuntimeException("Product not found"));
+    }
+
+    public List<Product> getAll(){
+        return repo.findAll();
     }
 }

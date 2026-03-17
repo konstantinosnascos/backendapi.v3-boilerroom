@@ -1,10 +1,16 @@
 package com.example.shop.controller.v2;
 
-import com.example.shop.dto.v1.product.ProductCreateDto;
-import com.example.shop.dto.v1.product.ProductResponseDto;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.example.shop.dto.v2.product.ProductCreateDto;
+import com.example.shop.dto.v2.product.ProductResponseDto;
 import com.example.shop.entity.Product;
 import com.example.shop.service.ProductService;
-import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v2/products")
@@ -24,7 +30,11 @@ public class ProductController2 {
         return new ProductResponseDto(
                 product.getId(),
                 product.getName(),
-                product.getPrice()
+                product.getPrice(),
+                product.getCurrency()
+
+                
+
         );
     }
 
@@ -36,7 +46,8 @@ public class ProductController2 {
         return new ProductResponseDto(
                 product.getId(),
                 product.getName(),
-                product.getPrice()
+                product.getPrice(), 
+                product.getCurrency()
         );
     }
 }

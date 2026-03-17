@@ -1,7 +1,13 @@
 package com.example.shop.entity;
 
-import jakarta.persistence.*;
 import java.util.List;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class Product {
@@ -13,6 +19,9 @@ public class Product {
     private String name;
 
     private int price;
+
+    private String Currency = "SEK";
+
 
     @OneToMany(mappedBy = "product")
     private List<OrderItem> orderItems;
@@ -49,4 +58,16 @@ public class Product {
     public Inventory getInventory() {
         return inventory;
     }
+
+    public String getCurrency() {
+        return Currency;
+    }
+
+    public String setCurrency(String currency) {
+        return Currency = currency;
+    }
+
+
+
+
 }

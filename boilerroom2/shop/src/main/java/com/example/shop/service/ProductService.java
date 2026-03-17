@@ -1,8 +1,9 @@
 package com.example.shop.service;
 
+import org.springframework.stereotype.Service;
+
 import com.example.shop.entity.Product;
 import com.example.shop.repository.ProductRepository;
-import org.springframework.stereotype.Service;
 
 @Service
 public class ProductService {
@@ -18,7 +19,9 @@ public class ProductService {
         Product product = new Product();
         product.setName(name);
         product.setPrice(price);
-
+        product.setCurrency("SEK");
+ 
+        
         return repo.save(product);
     }
 

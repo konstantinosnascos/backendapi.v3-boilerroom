@@ -11,11 +11,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/v2/inventory")
-public class InventoryController {
+public class InventoryController2 {
 
     private final InventoryService service;
 
-    public InventoryController(InventoryService service) {
+    public InventoryController2(InventoryService service) {
         this.service = service;
     }
 

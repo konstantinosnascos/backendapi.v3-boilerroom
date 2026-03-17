@@ -8,11 +8,11 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v2/customers")
-public class CustomerController {
+public class CustomerController2 {
 
     private final CustomerService service;
 
-    public CustomerController(CustomerService service) {
+    public CustomerController2(CustomerService service) {
         this.service = service;
     }
 

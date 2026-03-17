@@ -8,11 +8,11 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v2/products")
-public class ProductController {
+public class ProductController2 {
 
     private final ProductService service;
 
-    public ProductController(ProductService service) {
+    public ProductController2(ProductService service) {
         this.service = service;
     }
 

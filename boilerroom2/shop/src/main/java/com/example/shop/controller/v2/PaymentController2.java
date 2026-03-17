@@ -6,11 +6,11 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v2/payments")
-public class PaymentController {
+public class PaymentController2 {
 
     private final PaymentService service;
 
-    public PaymentController(PaymentService service) {
+    public PaymentController2(PaymentService service) {
         this.service = service;
     }
 

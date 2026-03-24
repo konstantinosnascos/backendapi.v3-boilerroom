@@ -30,4 +30,6 @@ public class ProductService {
         return repo.findById(id)
                 .orElseThrow(() -> new RuntimeException("Product not found"));
     }
+
+    
 }

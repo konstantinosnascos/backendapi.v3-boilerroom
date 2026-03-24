@@ -21,16 +21,19 @@ public class OrderService {
     private final ProductRepository productRepo;
     private final OrderItemRepository orderItemRepo;
     private final InventoryService inventoryService;
+    private final CustomerService customerService;
 
     public OrderService(
             OrderRepository orderRepo,
             CustomerRepository customerRepo,
+            CustomerService customerService,
             ProductRepository productRepo,
             OrderItemRepository orderItemRepo,
             InventoryService inventoryService) {
 
         this.orderRepo = orderRepo;
         this.customerRepo = customerRepo;
+        this.customerService = customerService;
         this.productRepo = productRepo;
         this.orderItemRepo = orderItemRepo;
         this.inventoryService = inventoryService;
@@ -38,8 +41,7 @@ public class OrderService {
 
     public Order createOrder(Long customerId) {
 
-        Customer customer = customerRepo.findById(customerId)
-                .orElseThrow(() -> new RuntimeException("Customer not found"));
+        Customer customer = customerService.getById(customerId);
 
         Order order = new Order();
         order.setCustomer(customer);
@@ -53,7 +55,7 @@ public class OrderService {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Order not found"));
 
         Product product = productRepo.findById(productId)
-                .orElseThrow(() -> new RuntimeException("Product not found"));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Product not found"));
 
         inventoryService.decreaseStock(product, quantity);
 

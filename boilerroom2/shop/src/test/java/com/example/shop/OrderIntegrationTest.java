@@ -24,7 +24,7 @@ public class OrderIntegrationTest
 
         ResponseEntity<String> response = restTemplate.postForEntity("/api/v2/orders", map, String.class);
 
-        throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Customer not found");
+        assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
     }
 
     // TEST 2

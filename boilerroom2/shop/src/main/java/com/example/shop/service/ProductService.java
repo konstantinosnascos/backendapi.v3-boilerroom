@@ -1,11 +1,11 @@
 package com.example.shop.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.example.shop.entity.Product;
 import com.example.shop.repository.ProductRepository;
-
-import java.util.List;
 
 @Service
 public class ProductService {
@@ -36,4 +36,6 @@ public class ProductService {
     public List<Product> getAll(){
         return repo.findAll();
     }
+
+
 }

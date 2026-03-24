@@ -40,6 +40,18 @@ public class OrderIntegrationTest
         assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
     }
 
+    //Test 3
+    @Test
+    void createOrder()
+    {
+        Map<String,Long> request = Map.of("customerId",1L);
+
+        ResponseEntity<OrderResponseDto> response = restTemplate.postForEntity(
+                "/api/v1/orders", request, OrderResponseDto.class);
+
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+    }
+
     //test4
     @Test
     void getOrder() {
@@ -51,6 +63,18 @@ public class OrderIntegrationTest
                 );
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
+    }
+
+    //Test 5
+    @Test
+    void getOrderNotFoundAgain()
+    {
+        Long orderId = 999L;
+
+        ResponseEntity<String> response = restTemplate.getForEntity(
+                "/api/v2/orders/" + orderId, String.class);
+
+        assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
     }
 
     //test 6
@@ -71,17 +95,5 @@ public class OrderIntegrationTest
                 );
 
         assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
-    }
-
-
-    @Test
-    void createOrder()
-    {
-        Map<String,Long> request = Map.of("customerId",1L);
-
-        ResponseEntity<OrderResponseDto> response = restTemplate.postForEntity(
-                "/api/v1/orders", request, OrderResponseDto.class);
-
-        assertEquals(HttpStatus.OK, response.getStatusCode());
     }
 }

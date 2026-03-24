@@ -2,7 +2,9 @@ package com.example.shop.service;
 
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.example.shop.entity.Product;
 import com.example.shop.repository.ProductRepository;
@@ -30,7 +32,7 @@ public class ProductService {
     public Product getById(Long id) {
 
         return repo.findById(id)
-                .orElseThrow(() -> new RuntimeException("Product not found"));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Product not found"));
     }
 
     public List<Product> getAll(){

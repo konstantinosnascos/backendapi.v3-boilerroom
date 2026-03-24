@@ -1,9 +1,17 @@
 package com.example.shop.service;
 
-import com.example.shop.entity.*;
-import com.example.shop.repository.*;
-
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
+
+import com.example.shop.entity.Customer;
+import com.example.shop.entity.Order;
+import com.example.shop.entity.OrderItem;
+import com.example.shop.entity.Product;
+import com.example.shop.repository.CustomerRepository;
+import com.example.shop.repository.OrderItemRepository;
+import com.example.shop.repository.OrderRepository;
+import com.example.shop.repository.ProductRepository;
 
 @Service
 public class OrderService {
@@ -62,6 +70,6 @@ public class OrderService {
     public Order getById(Long id) {
 
         return orderRepo.findById(id)
-                .orElseThrow(() -> new RuntimeException("Order not found"));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Order not found"));
     }
 }

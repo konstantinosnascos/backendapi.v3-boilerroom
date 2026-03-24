@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 import com.example.shop.entity.Product;
 import com.example.shop.repository.ProductRepository;
 
+import java.util.List;
+
 @Service
 public class ProductService {
 

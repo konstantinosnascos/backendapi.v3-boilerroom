@@ -1,7 +1,8 @@
 package com.example.shop.controller.v2;
 
-import com.example.shop.dto.v1.order.OrderCreateDto;
-import com.example.shop.dto.v1.order.OrderItemCreateDto;
+import com.example.shop.dto.v2.order.OrderCreateDto;
+import com.example.shop.dto.v2.order.OrderItemCreateDto;
+import com.example.shop.dto.v2.order.OrderResponseDto;
 import com.example.shop.entity.Order;
 import com.example.shop.service.OrderService;
 import org.springframework.web.bind.annotation.*;
@@ -36,7 +37,17 @@ public class OrderController2 {
     }
 
     @GetMapping("/{id}")
-    public Order get(@PathVariable Long id) {
-        return service.getById(id);
+    public OrderResponseDto get(@PathVariable Long id)
+    {
+        Order order = service.getById(id);
+        int totalPrice = order.getItems()
+                .stream()
+                .mapToInt
+                        (t ->
+                            t.getPriceAtPurchase() * t.getQuantity()
+                        )
+                .sum();
+
+        return new OrderResponseDto(order.getId(), order.getCustomer().getId(), totalPrice);
     }
 }

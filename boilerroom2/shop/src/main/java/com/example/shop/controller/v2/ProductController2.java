@@ -12,6 +12,8 @@ import com.example.shop.dto.v2.product.ProductResponseDto;
 import com.example.shop.entity.Product;
 import com.example.shop.service.ProductService;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/v2/products")
 public class ProductController2 {
@@ -49,5 +51,16 @@ public class ProductController2 {
                 product.getPrice(), 
                 product.getCurrency()
         );
+    }
+
+    @GetMapping
+    public List<ProductResponseDto> getAll() {
+        return service.getAll().stream()
+                .map(product -> new ProductResponseDto(
+                        product.getId(),
+                        product.getName(),
+                        product.getPrice(),
+                        product.getCurrency()))
+                .toList();
     }
 }

@@ -40,5 +40,13 @@ public class OrderIntegrationTest
         assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
     }
 
+    @Test
+    void getOrderNotFoundAgain() {
+        Long orderId = 999L;
 
+        ResponseEntity<String> response = restTemplate.getForEntity(
+                "/api/v2/orders/" + orderId, String.class);
+
+        assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
+    }
 }

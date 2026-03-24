@@ -1,5 +1,6 @@
 package com.example.shop;
 
+import com.example.shop.dto.v1.order.OrderResponseDto;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -25,4 +26,19 @@ public class OrderIntegrationTest
 
         throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Customer not found");
     }
+
+    // TEST 2
+    @Test
+    void getOrderNotFound() {
+
+        ResponseEntity<String> response =
+                restTemplate.getForEntity(
+                        "/api/v2/orders/999",
+                        String.class
+                );
+
+        assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
+    }
+
+
 }

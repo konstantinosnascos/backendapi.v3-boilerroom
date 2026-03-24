@@ -1,8 +1,11 @@
 package com.example.shop.service;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
+
 import com.example.shop.entity.Customer;
 import com.example.shop.repository.CustomerRepository;
-import org.springframework.stereotype.Service;
 
 @Service
 public class CustomerService {
@@ -24,6 +27,6 @@ public class CustomerService {
 
     public Customer getById(Long id) {
         return repo.findById(id)
-                .orElseThrow(() -> new RuntimeException("Customer not found"));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Customer not found"));
     }
 }

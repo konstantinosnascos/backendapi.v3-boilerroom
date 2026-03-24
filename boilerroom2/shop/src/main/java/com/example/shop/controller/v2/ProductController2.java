@@ -1,5 +1,7 @@
 package com.example.shop.controller.v2;
 
+import java.util.List;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,8 +13,6 @@ import com.example.shop.dto.v2.product.ProductCreateDto;
 import com.example.shop.dto.v2.product.ProductResponseDto;
 import com.example.shop.entity.Product;
 import com.example.shop.service.ProductService;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/v2/products")

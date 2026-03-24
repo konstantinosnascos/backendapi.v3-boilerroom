@@ -33,7 +33,5 @@ public class ProductService {
                 .orElseThrow(() -> new RuntimeException("Product not found"));
     }
 
-    public List<Product> getAll(){
-        return repo.findAll();
-    }
+    
 }

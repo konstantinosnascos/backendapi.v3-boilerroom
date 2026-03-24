@@ -2,6 +2,7 @@ package com.example.shop.controller.v1;
 
 import com.example.shop.dto.v1.order.OrderCreateDto;
 import com.example.shop.dto.v1.order.OrderItemCreateDto;
+import com.example.shop.dto.v1.order.OrderResponseDto;
 import com.example.shop.entity.Order;
 import com.example.shop.service.OrderService;
 
@@ -18,11 +19,11 @@ public class OrderController {
     }
 
     @PostMapping
-    public Long create(@RequestBody OrderCreateDto dto) {
+    public OrderResponseDto create(@RequestBody OrderCreateDto dto) {
 
         Order order = service.createOrder(dto.customerId());
 
-        return order.getId();
+        return new OrderResponseDto(order.getId(), order.getCustomer().getId());
     }
 
     @PostMapping("/{orderId}/items")

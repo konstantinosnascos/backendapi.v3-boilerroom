@@ -40,5 +40,14 @@ public class OrderIntegrationTest
         assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
     }
 
+    @Test
+    void createOrder()
+    {
+        Map<String,Long> request = Map.of("customerId",1L);
 
+        ResponseEntity<OrderResponseDto> response = restTemplate.postForEntity(
+                "/api/v1/orders", request, OrderResponseDto.class);
+
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+    }
 }

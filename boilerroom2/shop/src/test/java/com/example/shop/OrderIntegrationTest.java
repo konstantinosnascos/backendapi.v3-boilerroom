@@ -40,5 +40,18 @@ public class OrderIntegrationTest
         assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
     }
 
+    //test4
+    @Test
+    void getOrder() {
+
+        ResponseEntity<OrderResponseDto> response =
+                restTemplate.getForEntity(
+                        "/api/v2/orders/1",
+                        OrderResponseDto.class
+                );
+
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+    }
+
 
 }

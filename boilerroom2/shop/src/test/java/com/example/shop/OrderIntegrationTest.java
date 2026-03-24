@@ -53,6 +53,26 @@ public class OrderIntegrationTest
         assertEquals(HttpStatus.OK, response.getStatusCode());
     }
 
+    //test 6
+
+    @Test
+    void addItemInvalidProduct() {
+
+        Map<String, Long> request = Map.of(
+                "productId", 999L,
+                "quantity", 1L
+        );
+
+        ResponseEntity<String> response =
+                restTemplate.postForEntity(
+                        "/api/v2/orders/1/items",
+                        request,
+                        String.class
+                );
+
+        assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
+    }
+
 
 
 }
